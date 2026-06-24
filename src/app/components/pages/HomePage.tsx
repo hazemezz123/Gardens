@@ -91,7 +91,7 @@ export function HomePage() {
                 </motion.div>
               ))
             : products.slice(0, 4).map(p => (
-            <motion.div key={p.id} variants={fadeUp}><ProductCard product={p} onViewDetails={() => nav("/product-detail")} onAddToCart={() => addItem(p.id)} /></motion.div>
+            <motion.div key={p.id} variants={fadeUp}><ProductCard product={p} onViewDetails={() => nav("/product-detail?id=" + p.id)} onAddToCart={() => addItem(p.id)} /></motion.div>
           ))}
         </motion.div>
       </section>

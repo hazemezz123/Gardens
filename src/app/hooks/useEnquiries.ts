@@ -24,3 +24,11 @@ export function useMarkEnquiryRead() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["enquiries"] }),
   });
 }
+
+export function useDeleteEnquiry() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => enquiriesService.deleteEnquiry(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["enquiries"] }),
+  });
+}

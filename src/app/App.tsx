@@ -13,6 +13,7 @@ import { AdminDashboard } from "./components/pages/AdminDashboard";
 import { CartPage } from "./components/pages/CartPage";
 import { CheckoutPage } from "./components/pages/CheckoutPage";
 import { AuthGuard } from "./components/shared/AuthGuard";
+import { OrdersPage } from "./components/pages/OrdersPage";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
         <Route path="/admin" element={<AuthGuard><AdminDashboard /></AuthGuard>} />
       </Routes>
 

@@ -41,7 +41,7 @@ export function TipsPage() {
       </div>
 
       {featured && (
-        <motion.article initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="group cursor-pointer grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border bg-card mb-10 hover:shadow-xl transition-all duration-300">
+        <motion.article initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="group cursor-pointer grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border bg-card mb-10 hover:shadow-xl transition-all duration-300">
           <div className="aspect-video lg:aspect-auto overflow-hidden bg-muted min-h-64">
             <img src={featured.image} alt={featured.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
           </div>
@@ -58,7 +58,7 @@ export function TipsPage() {
         </motion.article>
       )}
 
-      <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <motion.div variants={stagger} initial="hidden" animate="show" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {rest.map(a => (
           <motion.article key={a.id} variants={fadeUp} whileHover={{ y: -6 }} className="group cursor-pointer bg-card rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-all duration-300">
             <div className="aspect-[16/10] overflow-hidden bg-muted">

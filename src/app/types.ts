@@ -11,6 +11,13 @@ export interface Product {
   reviews: number;
   badge: string;
   status: string;
+  image_url: string | null;
+  image_source: "manual" | "pexels";
+  image_meta: {
+    pexels_id: number;
+    photographer: string;
+    photographer_url: string;
+  } | null;
 }
 
 export interface Article {
@@ -33,8 +40,10 @@ export interface TeamMember {
 }
 
 export interface FAQ {
-  q: string;
-  a: string;
+  id: number;
+  question: string;
+  answer: string;
+  sort_order: number;
 }
 
 export interface Profile {

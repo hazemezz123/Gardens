@@ -108,11 +108,11 @@ export function ContactPage() {
               <div key={i} className="bg-card border border-border rounded-xl overflow-hidden">
                 <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between px-5 py-4 text-left">
-                  <span className="text-sm font-medium text-foreground pr-4">{faq.q}</span>
+                  <span className="text-sm font-medium text-foreground pr-4">{faq.question}</span>
                   <ChevronDown size={16} className={`text-muted-foreground shrink-0 transition-transform ${openFaq === i ? "rotate-180" : ""}`} />
                 </button>
                 {openFaq === i && (
-                  <div className="px-5 pb-4 text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">{faq.a}</div>
+                  <div className="px-5 pb-4 text-sm text-muted-foreground leading-relaxed border-t border-border pt-3">{faq.answer}</div>
                 )}
                 </div>
             ))}

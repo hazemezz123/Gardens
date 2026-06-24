@@ -23,14 +23,24 @@ export async function getProducts(filters?: ProductFilters): Promise<Product[]> 
 }
 
 export async function getProduct(id: number): Promise<Product | null> {
-  const { data, error } = await supabase.from("products").select("*").eq("id", id).single();
+  const { data, error } = await supabase.from("products").select("*").eq("id", id).maybeSingle();
   if (error) throw error;
   return data;
 }
 
 export async function createProduct(product: {
-  name: string; price: number; difficulty: string; category: string;
-  image: string; rating?: number; reviews?: number; badge?: string; status?: string;
+  name: string;
+  price: number;
+  difficulty: string;
+  category: string;
+  image: string;
+  rating?: number;
+  reviews?: number;
+  badge?: string;
+  status?: string;
+  image_url?: string | null;
+  image_source?: string;
+  image_meta?: any;
 }): Promise<Product> {
   const { data, error } = await supabase.from("products").insert(product).select().single();
   if (error) throw error;

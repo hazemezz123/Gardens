@@ -19,7 +19,7 @@ export function ProductsPage() {
   const [page, setPage] = useState(1);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
-  const cats = ["All", "Vegetables", "Herbs", "Flowers", "Indoor Plants"];
+  const cats = ["All", "Plants", "Seeds", "Tools", "Pots", "Fertilizers"];
   const diffs = ["All", "Beginner", "Intermediate", "Advanced"];
 
   const { data: products = [], isLoading } = useProducts({
@@ -114,9 +114,9 @@ export function ProductsPage() {
           ) : paginated.length === 0 ? (
             <div className="text-center py-20 text-muted-foreground">No products match your filters.</div>
           ) : (
-            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <motion.div key={page} variants={stagger} initial="hidden" animate="show" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {paginated.map(p => (
-                <motion.div key={p.id} variants={fadeUp}><ProductCard product={p} onViewDetails={() => nav("/product-detail")} onAddToCart={() => addItem(p.id)} /></motion.div>
+                <motion.div key={p.id} variants={fadeUp}><ProductCard product={p} onViewDetails={() => nav("/product-detail?id=" + p.id)} onAddToCart={() => addItem(p.id)} /></motion.div>
               ))}
             </motion.div>
           )}

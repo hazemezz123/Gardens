@@ -17,6 +17,9 @@ export interface Database {
           status: string;
           created_at: string;
           updated_at: string;
+          image_url: string | null;
+          image_source: string;
+          image_meta: Json;
         };
         Insert: {
           name: string;
@@ -28,6 +31,9 @@ export interface Database {
           reviews?: number;
           badge?: string;
           status?: string;
+          image_url?: string | null;
+          image_source?: string;
+          image_meta?: Json;
         };
         Update: {
           name?: string;
@@ -39,6 +45,9 @@ export interface Database {
           reviews?: number;
           badge?: string;
           status?: string;
+          image_url?: string | null;
+          image_source?: string;
+          image_meta?: Json;
         };
       };
       articles: {

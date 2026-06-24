@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ShoppingCart, ChevronRight, Minus, Plus, Check, Leaf, Truck, Shield, Star as StarIcon } from "lucide-react";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { toast } from "sonner";
 import { useProducts, useProduct } from "../../hooks/useProducts";
 import { useCart } from "../../hooks/useCart";
@@ -12,16 +12,18 @@ import { ProductCard } from "../shared/ProductCard";
 export function ProductDetailPage() {
   const navigate = useNavigate();
   const nav = (path: string) => { navigate(path); window.scrollTo({ top: 0, behavior: "smooth" }); };
-  const productId = 1;
+  const [params] = useSearchParams();
+  const productId = Number(params.get("id")) || 1;
   const { data: product } = useProduct(productId);
-  const { data: relatedProducts = [] } = useProducts();
+  const { data: allProducts = [] } = useProducts();
   const { addItem } = useCart();
   const [activeImg, setActiveImg] = useState(0);
   const [tab, setTab] = useState<"overview" | "care" | "planting">("overview");
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
 
-  const thumbs = [product?.image, relatedProducts[0]?.image, relatedProducts[1]?.image, relatedProducts[2]?.image].filter(Boolean);
+  const relatedProducts = allProducts.filter(p => p.category === product?.category && p.id !== productId).slice(0, 4);
+  const thumbs = [product?.image, ...relatedProducts.map(p => p.image)].filter(Boolean).slice(0, 4);
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -134,8 +136,8 @@ export function ProductDetailPage() {
       <div>
         <h2 className="text-2xl font-semibold text-foreground mb-7" style={{ fontFamily: "'Playfair Display', serif" }}>You Might Also Like</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
-          {relatedProducts.slice(4, 8).map(p => (
-            <ProductCard key={p.id} product={p} onViewDetails={() => {}} onAddToCart={() => addItem(p.id)} />
+          {relatedProducts.map(p => (
+            <ProductCard key={p.id} product={p} onViewDetails={() => nav("/product-detail?id=" + p.id)} onAddToCart={() => { addItem(p.id); toast.success("Added to cart", { duration: 2000 }); }} />
           ))}
         </div>
       </div>

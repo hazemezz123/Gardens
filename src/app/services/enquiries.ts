@@ -19,3 +19,8 @@ export async function markEnquiryRead(id: number): Promise<void> {
   const { error } = await supabase.from("enquiries").update({ is_read: true }).eq("id", id);
   if (error) throw error;
 }
+
+export async function deleteEnquiry(id: number): Promise<void> {
+  const { error } = await supabase.from("enquiries").delete().eq("id", id);
+  if (error) throw error;
+}
