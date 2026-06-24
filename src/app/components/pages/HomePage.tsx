@@ -47,7 +47,7 @@ export function HomePage() {
               Everything a beginner needs to start growing — curated seed kits, expert guides, and sustainable tools delivered to your door.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <button onClick={() => nav("/products")} className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-base hover:bg-primary/90 transition-colors">
+              <button onClick={() => nav("/boxes")} className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-base hover:bg-primary/90 transition-colors">
                 Shop Gardening Boxes <ArrowRight size={17} />
               </button>
               <button onClick={() => nav("/tips")} className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-xl font-medium text-base hover:bg-white/20 transition-colors">
@@ -94,6 +94,9 @@ export function HomePage() {
             <motion.div key={p.id} variants={fadeUp}><ProductCard product={p} onViewDetails={() => nav("/product-detail?id=" + p.id)} onAddToCart={() => addItem(p.id)} /></motion.div>
           ))}
         </motion.div>
+        <button onClick={() => nav("/products")} className="sm:hidden w-full mt-6 py-3 rounded-xl border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors">
+          View All Products <ChevronRight size={15} className="inline" />
+        </button>
       </section>
 
       <section className="py-20 bg-secondary">
@@ -148,6 +151,9 @@ export function HomePage() {
             </motion.article>
           ))}
         </motion.div>
+        <button onClick={() => nav("/tips")} className="sm:hidden w-full mt-6 py-3 rounded-xl border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors">
+          All Articles <ChevronRight size={15} className="inline" />
+        </button>
       </section>
 
       <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="py-20 bg-primary">

@@ -50,10 +50,10 @@ export function ProductDetailPage() {
           <div className="aspect-square rounded-2xl overflow-hidden bg-muted mb-4">
             <img src={thumbs[activeImg]} alt={product.name} className="w-full h-full object-cover" />
           </div>
-          <div className="flex gap-3">
+          <div className="grid grid-cols-4 gap-3">
             {thumbs.map((t, i) => (
               <button key={i} onClick={() => setActiveImg(i)}
-                className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-colors ${activeImg === i ? "border-primary" : "border-border"}`}>
+                className={`aspect-square rounded-xl overflow-hidden border-2 transition-colors ${activeImg === i ? "border-primary" : "border-border"}`}>
                 <img src={t} alt="" className="w-full h-full object-cover" />
               </button>
             ))}

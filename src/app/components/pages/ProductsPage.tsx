@@ -19,7 +19,7 @@ export function ProductsPage() {
   const [page, setPage] = useState(1);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
-  const cats = ["All", "Plants", "Seeds", "Tools", "Pots", "Fertilizers"];
+  const cats = ["All", "Boxes", "Plants", "Seeds", "Tools", "Pots", "Fertilizers"];
   const diffs = ["All", "Beginner", "Intermediate", "Advanced"];
 
   const { data: products = [], isLoading } = useProducts({
@@ -53,6 +53,11 @@ export function ProductsPage() {
             </button>
           </div>
         </div>
+      </div>
+
+      <div className="sm:hidden relative mb-5">
+        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products…" className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-border bg-card text-sm outline-none focus:border-primary/50 transition-colors" />
       </div>
 
       <div className="flex gap-8">

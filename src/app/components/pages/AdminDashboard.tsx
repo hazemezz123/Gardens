@@ -272,7 +272,7 @@ export function AdminDashboard() {
       </aside>
 
       <div className="flex-1 bg-background overflow-auto">
-        <div className="lg:hidden flex border-b border-border bg-card px-4">
+          <div className="lg:hidden flex overflow-x-auto border-b border-border bg-card px-4">
           {[{ label: "Overview", id: "overview" as const }, { label: "Products", id: "products" as const }, { label: "Orders", id: "orders" as const }, { label: "Tips", id: "tips" as const }, { label: "Enquiries", id: "enquiries" as const }].map(t => (
             <button key={t.id} onClick={() => setActiveTab(t.id)}
               className={`px-4 py-3.5 text-sm font-medium border-b-2 -mb-px transition-colors ${activeTab === t.id ? "border-primary text-primary" : "border-transparent text-muted-foreground"}`}>
@@ -670,7 +670,7 @@ export function AdminDashboard() {
                 <div>
                   <label className="text-sm font-medium text-foreground block mb-1.5">Category</label>
                   <select value={formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-border bg-input-background outline-none focus:border-primary/50 text-sm">
-                    {["Plants", "Seeds", "Tools", "Pots", "Fertilizers"].map(c => <option key={c}>{c}</option>)}
+                    {["Boxes", "Plants", "Seeds", "Tools", "Pots", "Fertilizers"].map(c => <option key={c}>{c}</option>)}
                   </select>
                 </div>
                 <div>

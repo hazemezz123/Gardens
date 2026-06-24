@@ -1,0 +1,480 @@
+{
+  "numTotalTestSuites": 10,
+  "numPassedTestSuites": 10,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 44,
+  "numPassedTests": 44,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesRemovedList": [],
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "uncheckedKeysByFile": [],
+    "unmatched": 0,
+    "updated": 0,
+    "didUpdate": false
+  },
+  "startTime": 1782297405535,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": ["Data types"],
+          "fullName": "Data types Product interface validates shape",
+          "status": "passed",
+          "title": "Product interface validates shape",
+          "duration": 2.5318999999999505,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Data types"],
+          "fullName": "Data types Article interface validates shape",
+          "status": "passed",
+          "title": "Article interface validates shape",
+          "duration": 0.4520999999999731,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Data types"],
+          "fullName": "Data types Enquiry interface validates shape",
+          "status": "passed",
+          "title": "Enquiry interface validates shape",
+          "duration": 0.360700000000179,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Data types"],
+          "fullName": "Data types FAQ interface validates shape",
+          "status": "passed",
+          "title": "FAQ interface validates shape",
+          "duration": 0.3827000000001135,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Data types"],
+          "fullName": "Data types TeamMember interface validates shape",
+          "status": "passed",
+          "title": "TeamMember interface validates shape",
+          "duration": 0.3079000000002452,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Data types"],
+          "fullName": "Data types Profile interface validates shape",
+          "status": "passed",
+          "title": "Profile interface validates shape",
+          "duration": 0.2442999999998392,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Data types"],
+          "fullName": "Data types Order interface validates shape",
+          "status": "passed",
+          "title": "Order interface validates shape",
+          "duration": 0.23860000000013315,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Data types"],
+          "fullName": "Data types CartItem interface validates shape",
+          "status": "passed",
+          "title": "CartItem interface validates shape",
+          "duration": 0.21420000000034634,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Page components render without crashing"],
+          "fullName": "Page components render without crashing HomePage renders",
+          "status": "passed",
+          "title": "HomePage renders",
+          "duration": 1194.9649,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Page components render without crashing"],
+          "fullName": "Page components render without crashing BoxesPage renders",
+          "status": "passed",
+          "title": "BoxesPage renders",
+          "duration": 61.435199999999895,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Page components render without crashing"],
+          "fullName": "Page components render without crashing AboutPage renders",
+          "status": "passed",
+          "title": "AboutPage renders",
+          "duration": 98.61779999999953,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Page components render without crashing"],
+          "fullName": "Page components render without crashing ProductsPage renders",
+          "status": "passed",
+          "title": "ProductsPage renders",
+          "duration": 46.436500000000706,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Page components render without crashing"],
+          "fullName": "Page components render without crashing ProductDetailPage renders",
+          "status": "passed",
+          "title": "ProductDetailPage renders",
+          "duration": 39.762000000000626,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Page components render without crashing"],
+          "fullName": "Page components render without crashing TipsPage renders",
+          "status": "passed",
+          "title": "TipsPage renders",
+          "duration": 23.226399999999558,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Page components render without crashing"],
+          "fullName": "Page components render without crashing ContactPage renders",
+          "status": "passed",
+          "title": "ContactPage renders",
+          "duration": 77.80509999999958,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Page components render without crashing"],
+          "fullName": "Page components render without crashing CartPage renders",
+          "status": "passed",
+          "title": "CartPage renders",
+          "duration": 28.17949999999928,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Page components render without crashing"],
+          "fullName": "Page components render without crashing OrdersPage renders",
+          "status": "passed",
+          "title": "OrdersPage renders",
+          "duration": 34.4371000000001,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Layout components render"],
+          "fullName": "Layout components render Navbar renders",
+          "status": "passed",
+          "title": "Navbar renders",
+          "duration": 25.89679999999953,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Layout components render"],
+          "fullName": "Layout components render Footer renders",
+          "status": "passed",
+          "title": "Footer renders",
+          "duration": 26.100900000000365,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Layout components render"],
+          "fullName": "Layout components render MobileNav renders",
+          "status": "passed",
+          "title": "MobileNav renders",
+          "duration": 13.874399999999696,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Shared components render"],
+          "fullName": "Shared components render ProductCard renders with product data",
+          "status": "passed",
+          "title": "ProductCard renders with product data",
+          "duration": 23.852499999999964,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Shared components render"],
+          "fullName": "Shared components render CategoryTag renders",
+          "status": "passed",
+          "title": "CategoryTag renders",
+          "duration": 2.661000000000058,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Shared components render"],
+          "fullName": "Shared components render DifficultyBadge renders",
+          "status": "passed",
+          "title": "DifficultyBadge renders",
+          "duration": 3.8783000000003085,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Shared components render"],
+          "fullName": "Shared components render AuthGuard shows admin login when not authenticated",
+          "status": "passed",
+          "title": "AuthGuard shows admin login when not authenticated",
+          "duration": 15.533299999999144,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["App routing structure"],
+          "fullName": "App routing structure App has correct route count",
+          "status": "passed",
+          "title": "App has correct route count",
+          "duration": 163.36679999999978,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["App routing structure"],
+          "fullName": "App routing structure All page components are exported",
+          "status": "passed",
+          "title": "All page components are exported",
+          "duration": 20.452800000000025,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["App routing structure"],
+          "fullName": "App routing structure Layout components are exported",
+          "status": "passed",
+          "title": "Layout components are exported",
+          "duration": 0.570400000000518,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Service functions exist"],
+          "fullName": "Service functions exist products service exports all functions",
+          "status": "passed",
+          "title": "products service exports all functions",
+          "duration": 0.6033000000006723,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Service functions exist"],
+          "fullName": "Service functions exist cart service exports functions",
+          "status": "passed",
+          "title": "cart service exports functions",
+          "duration": 8.93119999999999,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Service functions exist"],
+          "fullName": "Service functions exist articles service exports functions",
+          "status": "passed",
+          "title": "articles service exports functions",
+          "duration": 0.2885999999998603,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Service functions exist"],
+          "fullName": "Service functions exist enquiries service exports functions",
+          "status": "passed",
+          "title": "enquiries service exports functions",
+          "duration": 0.32819999999992433,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Service functions exist"],
+          "fullName": "Service functions exist orders service exports functions",
+          "status": "passed",
+          "title": "orders service exports functions",
+          "duration": 0.2242999999998574,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Service functions exist"],
+          "fullName": "Service functions exist team service exports functions",
+          "status": "passed",
+          "title": "team service exports functions",
+          "duration": 0.21810000000004948,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Service functions exist"],
+          "fullName": "Service functions exist faqs service exports functions",
+          "status": "passed",
+          "title": "faqs service exports functions",
+          "duration": 0.20870000000013533,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Hook functions exist"],
+          "fullName": "Hook functions exist useAuth hook exists",
+          "status": "passed",
+          "title": "useAuth hook exists",
+          "duration": 0.2290000000002692,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Hook functions exist"],
+          "fullName": "Hook functions exist useCart hook exists",
+          "status": "passed",
+          "title": "useCart hook exists",
+          "duration": 0.20679999999993015,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Hook functions exist"],
+          "fullName": "Hook functions exist useProducts hook exists",
+          "status": "passed",
+          "title": "useProducts hook exists",
+          "duration": 0.23850000000038563,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Hook functions exist"],
+          "fullName": "Hook functions exist useArticles hook exists",
+          "status": "passed",
+          "title": "useArticles hook exists",
+          "duration": 0.1896999999999025,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Hook functions exist"],
+          "fullName": "Hook functions exist useOrders hook exists",
+          "status": "passed",
+          "title": "useOrders hook exists",
+          "duration": 0.19760000000042055,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Type exports"],
+          "fullName": "Type exports types.ts module loads without error",
+          "status": "passed",
+          "title": "types.ts module loads without error",
+          "duration": 6.124899999999798,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Responsive CSS classes"],
+          "fullName": "Responsive CSS classes Navbar has mobile responsive classes",
+          "status": "passed",
+          "title": "Navbar has mobile responsive classes",
+          "duration": 5.222600000000057,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Responsive CSS classes"],
+          "fullName": "Responsive CSS classes Footer has responsive grid",
+          "status": "passed",
+          "title": "Footer has responsive grid",
+          "duration": 12.031299999999646,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Responsive CSS classes"],
+          "fullName": "Responsive CSS classes MobileNav has fixed bottom positioning",
+          "status": "passed",
+          "title": "MobileNav has fixed bottom positioning",
+          "duration": 9.054200000000492,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        },
+        {
+          "ancestorTitles": ["Responsive CSS classes"],
+          "fullName": "Responsive CSS classes Page components use max-w-7xl container",
+          "status": "passed",
+          "title": "Page components use max-w-7xl container",
+          "duration": 84.92220000000088,
+          "failureMessages": [],
+          "meta": {},
+          "tags": []
+        }
+      ],
+      "startTime": 1782297408346,
+      "endTime": 1782297410382.922,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/Administrator/Desktop/Unit-6/website/src/__tests__/all.test.tsx"
+    }
+  ]
+}

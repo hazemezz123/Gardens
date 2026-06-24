@@ -1,4 +1,4 @@
-import { Leaf, Package, ShoppingCart, BookOpen, Mail } from "lucide-react";
+import { Leaf, Package, ShoppingCart, BookOpen, Mail, Gift } from "lucide-react";
 import { useNavigate, useLocation } from "react-router";
 
 export function MobileNav() {
@@ -6,6 +6,7 @@ export function MobileNav() {
   const location = useLocation();
   const links = [
     { label: "Home", path: "/", Icon: Leaf },
+    { label: "Boxes", path: "/boxes", Icon: Gift },
     { label: "Shop", path: "/products", Icon: Package },
     { label: "Cart", path: "/cart", Icon: ShoppingCart },
     { label: "Tips", path: "/tips", Icon: BookOpen },

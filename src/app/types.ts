@@ -1,4 +1,4 @@
-export type Page = "home" | "about" | "products" | "product-detail" | "tips" | "contact" | "admin" | "cart";
+export type Page = "home" | "boxes" | "about" | "products" | "product-detail" | "tips" | "contact" | "admin" | "cart";
 
 export interface Product {
   id: number;

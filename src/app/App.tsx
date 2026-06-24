@@ -14,6 +14,7 @@ import { CartPage } from "./components/pages/CartPage";
 import { CheckoutPage } from "./components/pages/CheckoutPage";
 import { AuthGuard } from "./components/shared/AuthGuard";
 import { OrdersPage } from "./components/pages/OrdersPage";
+import { BoxesPage } from "./components/pages/BoxesPage";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/boxes" element={<BoxesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product-detail" element={<ProductDetailPage />} />

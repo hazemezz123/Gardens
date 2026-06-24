@@ -16,7 +16,7 @@ export function AboutPage() {
   const { data: team = [] } = useTeam();
   return (
     <main>
-      <section className="relative h-80 flex items-center overflow-hidden">
+      <section className="relative min-h-64 lg:h-80 flex items-center overflow-hidden">
         <motion.div initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 6, ease: "easeOut" }} className="absolute inset-0">
           <div className="absolute inset-0 bg-foreground/50 z-10" />
           <img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=1600&h=500&fit=crop&auto=format" alt="Garden path through green foliage" className="w-full h-full object-cover" />

@@ -52,29 +52,36 @@ export function CartPage() {
         <div className="flex flex-col lg:flex-row gap-10">
           <div className="flex-1 space-y-4">
             {cartItems.map(ci => (
-              <div key={ci.productId} className="flex items-center gap-4 bg-card border border-border rounded-2xl p-4">
-                <div className="w-20 h-20 rounded-xl bg-muted overflow-hidden shrink-0">
-                  <img src={ci.product!.image} alt={ci.product!.name} className="w-full h-full object-cover" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-medium text-foreground text-sm leading-snug" style={{ fontFamily: "'Playfair Display', serif" }}>{ci.product!.name}</h3>
-                  <p className="text-sm font-semibold text-foreground mt-1">£{ci.product!.price.toFixed(2)}</p>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <button onClick={() => updateQty(ci.productId, ci.quantity - 1)} className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-muted transition-colors">
-                    <Minus size={13} />
-                  </button>
-                  <span className="w-10 text-center text-sm font-medium">{ci.quantity}</span>
-                  <button onClick={() => updateQty(ci.productId, ci.quantity + 1)} className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-muted transition-colors">
-                    <Plus size={13} />
+              <div key={ci.productId} className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 bg-card border border-border rounded-2xl p-3 sm:p-4">
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-muted overflow-hidden shrink-0">
+                    <img src={ci.product!.image} alt={ci.product!.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-foreground text-sm leading-snug" style={{ fontFamily: "'Playfair Display', serif" }}>{ci.product!.name}</h3>
+                    <p className="text-sm font-semibold text-foreground mt-1">£{ci.product!.price.toFixed(2)}</p>
+                  </div>
+                  <button onClick={() => { removeItem(ci.productId); toast.success("Removed from cart"); }} className="sm:hidden p-1.5 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
+                    <Trash2 size={15} />
                   </button>
                 </div>
-                <div className="text-right min-w-[70px]">
-                  <p className="font-semibold text-foreground">£{(ci.product!.price * ci.quantity).toFixed(2)}</p>
+                <div className="flex items-center justify-between w-full sm:w-auto sm:gap-4">
+                  <div className="flex items-center gap-1.5">
+                    <button onClick={() => updateQty(ci.productId, ci.quantity - 1)} className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-muted transition-colors">
+                      <Minus size={13} />
+                    </button>
+                    <span className="w-10 text-center text-sm font-medium">{ci.quantity}</span>
+                    <button onClick={() => updateQty(ci.productId, ci.quantity + 1)} className="w-8 h-8 rounded-lg border border-border flex items-center justify-center hover:bg-muted transition-colors">
+                      <Plus size={13} />
+                    </button>
+                  </div>
+                  <div className="text-right min-w-[70px]">
+                    <p className="font-semibold text-foreground">£{(ci.product!.price * ci.quantity).toFixed(2)}</p>
+                  </div>
+                  <button onClick={() => { removeItem(ci.productId); toast.success("Removed from cart"); }} className="hidden sm:flex p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
+                    <Trash2 size={15} />
+                  </button>
                 </div>
-                <button onClick={() => { removeItem(ci.productId); toast.success("Removed from cart"); }} className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
-                  <Trash2 size={15} />
-                </button>
               </div>
             ))}
           </div>

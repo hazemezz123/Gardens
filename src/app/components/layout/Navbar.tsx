@@ -12,6 +12,7 @@ export function Navbar() {
   const { count } = useCart();
   const links = [
     { label: "Home", path: "/" },
+    { label: "Boxes", path: "/boxes" },
     { label: "Products", path: "/products" },
     { label: "About", path: "/about" },
     { label: "Tips", path: "/tips" },
@@ -19,10 +20,10 @@ export function Navbar() {
   ];
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-24">
         <button onClick={() => navigate("/")} className="flex items-center gap-2 group">
-          <img src="/Gardens-logo.svg" alt="Gardens" className="h-8 w-auto" />
-          <span className="font-display text-xl font-semibold text-foreground tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Gardens</span>
+          <img src="/Gardens-logo.png" alt="Gardens" className="h-20 w-auto" />
+          {/* <span className="font-display text-xl font-semibold text-foreground tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>Gardens</span> */}
         </button>
 
         <nav className="hidden md:flex items-center gap-1">
@@ -58,12 +59,27 @@ export function Navbar() {
 
       {open && (
         <div className="md:hidden border-t border-border bg-background px-4 py-3 space-y-1">
-          {[...links, { label: "Dashboard", path: "/admin" }].map(l => (
+          {links.map(l => (
             <button key={l.path} onClick={() => { navigate(l.path); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${location.pathname === l.path ? "bg-secondary text-primary" : "text-foreground hover:bg-muted"}`}>
               {l.label}
             </button>
           ))}
+          <button onClick={() => { navigate("/admin"); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${location.pathname === "/admin" ? "bg-secondary text-primary" : "text-foreground hover:bg-muted"}`}>
+            Dashboard
+          </button>
+          {user && (
+            <>
+              <div className="border-t border-border my-2" />
+              <button onClick={() => { navigate("/orders"); setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-foreground hover:bg-muted transition-colors">
+                My Orders
+              </button>
+              <button onClick={() => { signOut(); setOpen(false); }} className="w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted transition-colors">
+                Sign Out ({user.profile?.name || user.email})
+              </button>
+            </>
+          )}
         </div>
       )}
     </header>

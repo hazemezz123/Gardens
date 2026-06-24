@@ -7,7 +7,10 @@
     "build": "vite build",
     "dev": "vite",
     "preview": "vite preview",
-    "seed:products": "tsx scripts/seedProducts.ts"
+    "seed:products": "tsx scripts/seedProducts.ts",
+    "test": "vitest run",
+    "test:csv": "vitest run && npx tsx scripts/json-to-csv.ts",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
@@ -71,11 +74,16 @@
     "vaul": "1.1.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@tailwindcss/vite": "4.1.12",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@vitejs/plugin-react": "4.7.0",
+    "jsdom": "^29.1.1",
     "tailwindcss": "4.1.12",
     "tsx": "^4.22.4",
-    "vite": "6.3.5"
+    "vite": "6.3.5",
+    "vitest": "^4.1.9"
   },
   "pnpm": {
     "overrides": {
