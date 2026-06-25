@@ -135,6 +135,18 @@ describe("Page components render without crashing", () => {
     renderWithProviders(<OrdersPage />);
     expect(document.querySelector("main")).toBeInTheDocument();
   });
+
+  it("ActivitiesPage renders", async () => {
+    const { ActivitiesPage } = await import("../app/components/pages/ActivitiesPage");
+    renderWithProviders(<ActivitiesPage />);
+    expect(document.querySelector("main")).toBeInTheDocument();
+  });
+
+  it("NotFoundPage renders", async () => {
+    const { NotFoundPage } = await import("../app/components/pages/NotFoundPage");
+    renderWithProviders(<NotFoundPage />);
+    expect(document.querySelector("main")).toBeInTheDocument();
+  });
 });
 
 describe("Layout components render", () => {
@@ -197,7 +209,7 @@ describe("App routing structure", () => {
   });
 
   it("All page components are exported", async () => {
-    const pages = ["HomePage", "BoxesPage", "AboutPage", "ProductsPage", "ProductDetailPage", "TipsPage", "ContactPage", "CartPage", "CheckoutPage", "OrdersPage"];
+    const pages = ["HomePage", "BoxesPage", "AboutPage", "ProductsPage", "ProductDetailPage", "TipsPage", "ContactPage", "CartPage", "CheckoutPage", "OrdersPage", "ActivitiesPage", "NotFoundPage"];
     for (const name of pages) {
       const mod = await import(`../app/components/pages/${name}`);
       expect(mod[name]).toBeDefined();
@@ -323,7 +335,7 @@ describe("Responsive CSS classes", () => {
   });
 
   it("Page components use max-w-7xl container", async () => {
-    const pages = ["HomePage", "AboutPage", "ProductsPage", "TipsPage"];
+    const pages = ["HomePage", "AboutPage", "ProductsPage", "TipsPage", "ActivitiesPage"];
     for (const name of pages) {
       const mod = await import(`../app/components/pages/${name}`);
       const Component = mod[name];

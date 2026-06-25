@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Package, ShoppingCart, MessageSquare, BarChart2, Inbox, FileText, ClipboardList, Eye, Edit, Trash2, Plus, X, AlertTriangle } from "lucide-react";
-import type { Product, Article, Enquiry } from "../../types";
+import { Package, ShoppingCart, MessageSquare, BarChart2, Inbox, FileText, ClipboardList, Eye, Edit, Trash2, Plus, X, AlertTriangle, ChevronRight } from "lucide-react";
+import type { Product, Article, Enquiry, OrderItem } from "../../types";
 import { useProducts, useCreateProduct, useUpdateProduct, useDeleteProduct } from "../../hooks/useProducts";
 import { useEnquiries, useMarkEnquiryRead, useDeleteEnquiry } from "../../hooks/useEnquiries";
 import { useArticles, useCreateArticle, useUpdateArticle, useDeleteArticle } from "../../hooks/useArticles";
@@ -10,7 +10,8 @@ import { CategoryTag } from "../shared/CategoryTag";
 import { DifficultyBadge } from "../shared/DifficultyBadge";
 import { ImageSelector } from "../admin/ImageSelector";
 import type { PexelsImage } from "../../lib/pexels";
-import { getDashboardOrders } from "../../services/admin";
+import { getDashboardOrders, getAllOrders, getOrderItems } from "../../services/admin";
+import type { OrderItemWithProduct } from "../../services/admin";
 
 export function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<"overview" | "products" | "enquiries" | "tips" | "orders">("overview");
@@ -46,6 +47,10 @@ export function AdminDashboard() {
   const [viewEnquiry, setViewEnquiry] = useState<Enquiry | null>(null);
   const [selectedPexelsImage, setSelectedPexelsImage] = useState<PexelsImage | null>(null);
   const [selectedArticleImage, setSelectedArticleImage] = useState<PexelsImage | null>(null);
+  const [orderFilter, setOrderFilter] = useState<string | undefined>(undefined);
+  const [viewOrderData, setViewOrderData] = useState<{ id: number; customer_name: string | null; total: number; status: string; created_at: string } | null>(null);
+  const [orderItems, setOrderItems] = useState<OrderItemWithProduct[]>([]);
+  const [loadingItems, setLoadingItems] = useState(false);
 
   const { data: products = [] } = useProducts();
   const { data: enquiries = [] } = useEnquiries();
@@ -60,8 +65,15 @@ export function AdminDashboard() {
     queryKey: ["dashboard-orders"],
     queryFn: getDashboardOrders,
   });
+  const { data: allOrders = [], refetch: refetchOrders } = useQuery({
+    queryKey: ["all-orders", orderFilter],
+    queryFn: () => getAllOrders(orderFilter),
+  });
   const updateOrderStatus = useUpdateOrderStatus();
   const markRead = useMarkEnquiryRead();
+  const handleStatusUpdate = (id: number, status: string) => {
+    updateOrderStatus.mutate({ id, status: status as any }, { onSuccess: () => refetchOrders() });
+  };
   const deleteEnquiry = useDeleteEnquiry();
 
   const resetArticleForm = () => {
@@ -311,19 +323,19 @@ export function AdminDashboard() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
-                      {[
-                        { id: "#5021", name: "Emily Carter", product: "Heirloom Tomato Kit", amount: "\u00A334.99", status: "Dispatched" },
-                        { id: "#5020", name: "Tom Ashby", product: "Herb Garden Box", amount: "\u00A328.99", status: "Processing" },
-                        { id: "#5019", name: "Nina Patel", product: "Indoor Jungle Bundle", amount: "\u00A359.99", status: "Delivered" },
-                        { id: "#5018", name: "James Wu", product: "Wildflower Pack", amount: "\u00A322.50", status: "Delivered" },
-                      ].map(r => (
-                        <tr key={r.id} className="hover:bg-muted/40 transition-colors">
-                          <td className="py-3 pr-4 font-mono text-xs text-muted-foreground">{r.id}</td>
-                          <td className="py-3 pr-4 font-medium text-foreground">{r.name}</td>
-                          <td className="py-3 pr-4 text-muted-foreground">{r.product}</td>
-                          <td className="py-3 pr-4 font-medium text-foreground">{r.amount}</td>
+                      {dashboardOrders.slice(0, 5).map(o => (
+                        <tr key={o.id} className="hover:bg-muted/40 transition-colors">
+                          <td className="py-3 pr-4 font-mono text-xs text-muted-foreground">#{o.id}</td>
+                          <td className="py-3 pr-4 font-medium text-foreground">{o.customer_name || "Unknown"}</td>
+                          <td className="py-3 pr-4 text-muted-foreground">Order #{o.id}</td>
+                          <td className="py-3 pr-4 font-medium text-foreground">&pound;{o.total.toFixed(2)}</td>
                           <td className="py-3">
-                            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${r.status === "Delivered" ? "bg-emerald-100 text-emerald-700" : r.status === "Dispatched" ? "bg-blue-100 text-blue-700" : "bg-amber-100 text-amber-700"}`}>{r.status}</span>
+                            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                              o.status === "delivered" ? "bg-emerald-100 text-emerald-700" :
+                              o.status === "dispatched" ? "bg-blue-100 text-blue-700" :
+                              o.status === "processing" ? "bg-amber-100 text-amber-700" :
+                              "bg-gray-100 text-gray-600"
+                            }`}>{o.status}</span>
                           </td>
                         </tr>
                       ))}
@@ -386,24 +398,32 @@ export function AdminDashboard() {
             <div>
               <div className="flex items-center justify-between mb-6">
                 <h1 className="text-2xl font-semibold text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>Orders</h1>
-                <span className="text-sm text-muted-foreground">{dashboardOrders.length} total</span>
+                <span className="text-sm text-muted-foreground">{allOrders.length} total</span>
+              </div>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {[undefined, "pending", "processing", "dispatched", "delivered"].map(s => (
+                  <button key={s ?? "all"} onClick={() => setOrderFilter(s)}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${orderFilter === s ? "bg-primary text-primary-foreground" : "bg-card border border-border text-muted-foreground hover:text-foreground hover:bg-muted"}`}>
+                    {s ? s.charAt(0).toUpperCase() + s.slice(1) : "All"}
+                  </button>
+                ))}
               </div>
               <div className="bg-card border border-border rounded-2xl overflow-hidden">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm min-w-[700px]">
+                  <table className="w-full text-sm min-w-[750px]">
                     <thead className="bg-muted/40 border-b border-border">
                       <tr>
-                        {["Order", "Customer", "Total", "Status", "Date", "Actions"].map(h => (
+                        {["Order", "Customer", "Total", "Status", "Date", "Status", "View"].map(h => (
                           <th key={h} className="text-left px-5 py-3.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border">
-                      {dashboardOrders.map(o => (
+                      {allOrders.map(o => (
                         <tr key={o.id} className="hover:bg-muted/30 transition-colors">
                           <td className="px-5 py-3.5 font-mono text-xs text-muted-foreground">#{o.id}</td>
                           <td className="px-5 py-3.5 font-medium text-foreground">{o.customer_name || "Unknown"}</td>
-                          <td className="px-5 py-3.5 font-medium text-foreground">£{o.total.toFixed(2)}</td>
+                          <td className="px-5 py-3.5 font-medium text-foreground">\u00A3{o.total.toFixed(2)}</td>
                           <td className="px-5 py-3.5">
                             <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
                               o.status === "delivered" ? "bg-emerald-100 text-emerald-700" :
@@ -414,12 +434,25 @@ export function AdminDashboard() {
                           </td>
                           <td className="px-5 py-3.5 text-muted-foreground text-xs">{new Date(o.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</td>
                           <td className="px-5 py-3.5">
-                            <select value={o.status} onChange={(e) => updateOrderStatus.mutate({ id: o.id, status: e.target.value as any })}
+                            <select value={o.status} onChange={(e) => handleStatusUpdate(o.id, e.target.value)}
                               className="text-xs px-2 py-1.5 rounded-lg border border-border bg-input-background outline-none focus:border-primary/50">
                               {["pending", "processing", "dispatched", "delivered"].map(s => (
                                 <option key={s} value={s}>{s}</option>
                               ))}
                             </select>
+                          </td>
+                          <td className="px-5 py-3.5">
+                            <button onClick={async () => {
+                              setViewOrderData(o);
+                              setLoadingItems(true);
+                              try {
+                                const items = await getOrderItems(o.id);
+                                setOrderItems(items);
+                              } catch { setOrderItems([]); }
+                              setLoadingItems(false);
+                            }} className="p-1.5 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground" title="View order details">
+                              <Eye size={14} />
+                            </button>
                           </td>
                         </tr>
                       ))}
@@ -588,6 +621,82 @@ export function AdminDashboard() {
               {(createArticle.isError || updateArticle.isError) && (
                 <p className="text-xs text-rose-600 text-center">Failed to save tip. Please try again.</p>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {viewOrderData && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setViewOrderData(null)} />
+          <div className="relative bg-card rounded-2xl border border-border w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="flex items-center justify-between p-6 border-b border-border">
+              <h2 className="text-lg font-semibold text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Order #{viewOrderData.id}
+              </h2>
+              <button onClick={() => setViewOrderData(null)} className="p-2 hover:bg-muted rounded-lg transition-colors"><X size={16} /></button>
+            </div>
+            <div className="p-6 space-y-5">
+              <div className="grid grid-cols-2 gap-4 pb-4 border-b border-border">
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Customer</p>
+                  <p className="text-sm font-medium text-foreground">{viewOrderData.customer_name || "Unknown"}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Date</p>
+                  <p className="text-sm text-muted-foreground">{new Date(viewOrderData.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Status</p>
+                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full inline-block ${
+                    viewOrderData.status === "delivered" ? "bg-emerald-100 text-emerald-700" :
+                    viewOrderData.status === "dispatched" ? "bg-purple-100 text-purple-700" :
+                    viewOrderData.status === "processing" ? "bg-blue-100 text-blue-700" :
+                    "bg-amber-100 text-amber-700"
+                  }`}>{viewOrderData.status}</span>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">Total</p>
+                  <p className="text-sm font-bold text-foreground">&pound;{viewOrderData.total.toFixed(2)}</p>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Order Items</p>
+                {loadingItems ? (
+                  <p className="text-sm text-muted-foreground">Loading items...</p>
+                ) : orderItems.length === 0 ? (
+                  <p className="text-sm text-muted-foreground">No items found.</p>
+                ) : (
+                  <div className="space-y-2">
+                    {orderItems.map(item => (
+                      <div key={item.id} className="flex items-center justify-between py-2.5 px-3 rounded-lg bg-muted/40">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-foreground truncate">{item.product_name}</p>
+                          <p className="text-xs text-muted-foreground">Qty: {item.quantity} &times; &pound;{item.unit_price.toFixed(2)}</p>
+                        </div>
+                        <p className="text-sm font-semibold text-foreground ml-4">&pound;{item.line_total.toFixed(2)}</p>
+                      </div>
+                    ))}
+                    <div className="flex items-center justify-between pt-3 border-t border-border">
+                      <p className="text-sm font-semibold text-foreground">Total</p>
+                      <p className="text-base font-bold text-foreground">&pound;{viewOrderData.total.toFixed(2)}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex gap-3 pt-2">
+                <select value={viewOrderData.status} onChange={(e) => {
+                  handleStatusUpdate(viewOrderData.id, e.target.value);
+                  setViewOrderData({ ...viewOrderData, status: e.target.value });
+                }} className="flex-1 px-4 py-3 rounded-xl border border-border bg-input-background outline-none focus:border-primary/50 text-sm">
+                  {["pending", "processing", "dispatched", "delivered"].map(s => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
+                </select>
+                <button onClick={() => setViewOrderData(null)} className="flex-1 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors">Close</button>
+              </div>
             </div>
           </div>
         </div>

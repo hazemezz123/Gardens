@@ -18,7 +18,7 @@ export function CartPage() {
   const total = cartItems.reduce((sum, ci) => sum + (ci.product?.price ?? 0) * ci.quantity, 0);
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
         <button onClick={() => nav("/")} className="hover:text-foreground transition-colors">Home</button>
         <ChevronRight size={14} />

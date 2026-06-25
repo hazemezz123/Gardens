@@ -34,7 +34,7 @@ export function ProductsPage() {
   const totalPages = Math.ceil(products.length / PER_PAGE);
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="mb-8">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
           <button onClick={() => nav("/")} className="hover:text-foreground transition-colors">Home</button>

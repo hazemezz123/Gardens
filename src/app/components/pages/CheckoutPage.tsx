@@ -28,7 +28,7 @@ export function CheckoutPage() {
 
   if (submitted) {
     return (
-      <main className="max-w-lg mx-auto px-4 py-24 text-center">
+      <main id="main-content" className="max-w-lg mx-auto px-4 py-24 text-center">
         <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle size={40} className="text-emerald-600" />
         </div>
@@ -48,7 +48,7 @@ export function CheckoutPage() {
   }
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
         <button onClick={() => navigate("/")} className="hover:text-foreground transition-colors">Home</button>
         <ChevronRight size={14} />

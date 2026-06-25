@@ -3,6 +3,7 @@ import { Toaster } from "./components/ui/sonner";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { MobileNav } from "./components/layout/MobileNav";
+import { SkipNav } from "./components/layout/SkipNav";
 import { HomePage } from "./components/pages/HomePage";
 import { AboutPage } from "./components/pages/AboutPage";
 import { ProductsPage } from "./components/pages/ProductsPage";
@@ -15,15 +16,19 @@ import { CheckoutPage } from "./components/pages/CheckoutPage";
 import { AuthGuard } from "./components/shared/AuthGuard";
 import { OrdersPage } from "./components/pages/OrdersPage";
 import { BoxesPage } from "./components/pages/BoxesPage";
+import { ActivitiesPage } from "./components/pages/ActivitiesPage";
+import { NotFoundPage } from "./components/pages/NotFoundPage";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-background" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+      <SkipNav />
       <Navbar />
 
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/boxes" element={<BoxesPage />} />
+        <Route path="/activities" element={<ActivitiesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product-detail" element={<ProductDetailPage />} />
@@ -33,6 +38,7 @@ export default function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/admin" element={<AuthGuard><AdminDashboard /></AuthGuard>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       <Footer />

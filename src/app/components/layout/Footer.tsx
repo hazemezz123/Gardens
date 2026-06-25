@@ -34,7 +34,8 @@ export function Footer() {
             </div>
             <p className="text-sm text-background/60 leading-relaxed">
               Helping beginners grow with confidence through curated kits,
-              expert guides, and sustainable products.
+              expert guides, and sustainable products. Serving gardeners
+              across Europe, Asia, and New Zealand.
             </p>
             <div className="flex gap-3 mt-5">
               {[Instagram, Twitter, Facebook, Youtube].map((Icon, i) => (

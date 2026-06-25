@@ -23,7 +23,7 @@ export function ContactPage() {
   };
 
   return (
-    <main>
+    <main id="main-content">
       <section className="py-16 bg-secondary border-b border-border text-center">
         <p className="text-sm font-medium text-accent uppercase tracking-widest mb-2">Get In Touch</p>
         <h1 className="text-5xl font-semibold text-foreground mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>Contact Us</h1>

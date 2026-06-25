@@ -18,7 +18,7 @@ export function TipsPage() {
   const rest = articles.filter(a => a !== featured);
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center mb-12">
         <p className="text-sm font-medium text-accent uppercase tracking-widest mb-2">Learn &amp; Grow</p>
         <h1 className="text-5xl font-semibold text-foreground mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Gardening Tips</h1>

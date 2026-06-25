@@ -15,7 +15,7 @@ export function AboutPage() {
   const nav = (path: string) => { navigate(path); window.scrollTo({ top: 0, behavior: "smooth" }); };
   const { data: team = [] } = useTeam();
   return (
-    <main>
+    <main id="main-content">
       <section className="relative min-h-64 lg:h-80 flex items-center overflow-hidden">
         <motion.div initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 6, ease: "easeOut" }} className="absolute inset-0">
           <div className="absolute inset-0 bg-foreground/50 z-10" />
@@ -24,7 +24,7 @@ export function AboutPage() {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
           <p className="text-sm font-medium text-emerald-300 uppercase tracking-widest mb-3">Our Story</p>
           <h1 className="text-5xl font-semibold text-white" style={{ fontFamily: "'Playfair Display', serif" }}>Growing Together Since 2019</h1>
-          <p className="text-white/75 mt-4 max-w-xl mx-auto">We started in a small London flat with a windowsill and a dream. Today we help thousands of beginners grow their first garden.</p>
+          <p className="text-white/75 mt-4 max-w-xl mx-auto">We started in a small London flat with a windowsill and a dream. Today we help thousands of beginners grow their first garden across Europe, Asia, and New Zealand.</p>
         </motion.div>
       </section>
 
@@ -39,8 +39,9 @@ export function AboutPage() {
             { year: "2019", title: "A Kitchen Windowsill", desc: "Sophie grows her first herb box in a Brixton flat. Frustrated by complicated guides and poor-quality seeds, she decides to do it better." },
             { year: "2020", title: "First 100 Customers", desc: "A simple Shopify store selling handpicked seed kits to friends. Word spreads. The compostable packaging wins attention online." },
             { year: "2022", title: "The Team Grows", desc: "Marcus joins to lead product curation. Amelia builds the education programme. A real warehouse replaces the spare bedroom." },
-            { year: "2024", title: "Carbon Neutral Operations", desc: "Gardens achieves full carbon-neutral status. Every delivery is offset and the new warehouse runs on 100% renewable energy." },
-            { year: "2026", title: "50,000 Growers", desc: "More than 50,000 customers have started their first garden with a Gardens kit. The mission continues." },
+            { year: "2023", title: "Expanding Across Continents", desc: "Gardens launches operations across Europe, Asia, and New Zealand, opening distribution hubs in Singapore and Auckland to serve a growing global community of gardeners." },
+            { year: "2024", title: "Carbon Neutral Operations", desc: "Gardens achieves full carbon-neutral status across all three continents. Every delivery is offset and our warehouses run on 100% renewable energy." },
+            { year: "2026", title: "50,000 Growers Worldwide", desc: "More than 50,000 customers across Europe, Asia, and New Zealand have started their first garden with a Gardens kit. Our community continues to grow every day." },
           ].map((item, i) => (
             <motion.div key={item.year} variants={slideIn(i % 2 === 0 ? "left" : "right")} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} className={`relative flex md:items-center mb-10 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
               <div className="md:w-1/2 md:px-10">
@@ -67,8 +68,8 @@ export function AboutPage() {
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { Icon: Leaf, title: "Sustainability First", desc: "Every purchasing decision is weighed against its environmental impact. We choose the harder, greener path every time." },
-              { Icon: Sprout, title: "Accessibility", desc: "Gardening should not feel like a hobby reserved for experts with big gardens. We lower every barrier we find." },
+            { Icon: Leaf, title: "Sustainability First", desc: "Every purchasing decision is weighed against its environmental impact. We choose the harder, greener path every time, across every region we serve." },
+            { Icon: Sprout, title: "Accessibility", desc: "Gardening should not feel like a hobby reserved for experts with big gardens. We lower every barrier we find \u2014 in Europe, Asia, and New Zealand." },
               { Icon: BookOpen, title: "Education Over Selling", desc: "Our goal is to make you a confident gardener, not a repeat customer. A thriving garden is the best outcome." },
               { Icon: Shield, title: "Quality Guarantee", desc: "We test every product in real garden conditions before listing it. If it doesn't grow, we replace it. No questions." },
               { Icon: Heart, title: "Community", desc: "Gardening is better shared. Our growing community of members exchange tips, harvests, and encouragement." },

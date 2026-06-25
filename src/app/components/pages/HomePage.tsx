@@ -28,7 +28,7 @@ export function HomePage() {
   const [subscribed, setSubscribed] = useState(false);
 
   return (
-    <main>
+    <main id="main-content">
       <section className="relative min-h-[92vh] flex items-center overflow-hidden">
         <motion.div initial={{ scale: 1.1 }} animate={{ scale: 1 }} transition={{ duration: 8, ease: "easeOut" }} className="absolute inset-0">
           <div className="absolute inset-0 bg-foreground/40 z-10" />
@@ -44,7 +44,7 @@ export function HomePage() {
               <em className="text-emerald-300 not-italic">With Confidence</em>
             </h1>
             <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-xl mx-auto">
-              Everything a beginner needs to start growing — curated seed kits, expert guides, and sustainable tools delivered to your door.
+              Everything a beginner needs to start growing — curated seed kits, expert guides, and sustainable tools delivered to your door across Europe, Asia, and New Zealand.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button onClick={() => nav("/boxes")} className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold text-base hover:bg-primary/90 transition-colors">
