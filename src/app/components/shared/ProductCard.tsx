@@ -16,10 +16,12 @@ export function ProductCard({ product, onViewDetails, onAddToCart }: { product: 
           <span className="absolute top-3 left-3 bg-accent text-accent-foreground text-xs font-semibold px-2.5 py-1 rounded-full">{product.badge}</span>
         )}
         <button onClick={(e) => { e.stopPropagation(); setWished(!wished); }}
+          aria-label={wished ? "Remove from wishlist" : "Add to wishlist"}
           className="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
           <Heart size={14} className={wished ? "fill-rose-500 text-rose-500" : "text-gray-400"} />
         </button>
         <button onClick={onViewDetails}
+          aria-label={`Quick view ${product.name}`}
           className="absolute inset-x-3 bottom-3 bg-white/90 backdrop-blur-sm text-foreground text-sm font-medium py-2.5 rounded-xl flex items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity shadow-sm hover:bg-white">
           <Eye size={14} /> Quick View
         </button>

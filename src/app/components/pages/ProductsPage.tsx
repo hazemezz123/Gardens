@@ -36,7 +36,7 @@ export function ProductsPage() {
   return (
     <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="mb-8">
-        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
           <button onClick={() => nav("/")} className="hover:text-foreground transition-colors">Home</button>
           <ChevronRight size={14} />
           <span className="text-foreground">Products</span>
@@ -46,7 +46,7 @@ export function ProductsPage() {
           <div className="flex items-center gap-3">
             <div className="relative hidden sm:block">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products…" className="pl-9 pr-4 py-2.5 rounded-xl border border-border bg-card text-sm outline-none focus:border-primary/50 w-60 transition-colors" />
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products..." aria-label="Search products" className="pl-9 pr-4 py-2.5 rounded-xl border border-border bg-card text-sm outline-none focus:border-primary/50 w-60 transition-colors" />
             </div>
             <button onClick={() => setFiltersOpen(!filtersOpen)} className="sm:hidden flex items-center gap-2 bg-card border border-border px-4 py-2.5 rounded-xl text-sm font-medium">
               <Filter size={15} /> Filters
@@ -57,13 +57,13 @@ export function ProductsPage() {
 
       <div className="sm:hidden relative mb-5">
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products…" className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-border bg-card text-sm outline-none focus:border-primary/50 transition-colors" />
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products..." aria-label="Search products" className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-border bg-card text-sm outline-none focus:border-primary/50 transition-colors" />
       </div>
 
       <div className="flex gap-8">
         <aside className={`${filtersOpen ? "block" : "hidden"} sm:block w-full sm:w-56 shrink-0`}>
           <div className="bg-card border border-border rounded-2xl p-5 sticky top-24">
-            <h3 className="font-semibold text-foreground mb-5 text-sm uppercase tracking-wider">Filters</h3>
+            <h2 className="font-semibold text-foreground mb-5 text-sm uppercase tracking-wider">Filters</h2>
 
             <div className="mb-6">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Category</p>
@@ -79,7 +79,7 @@ export function ProductsPage() {
 
             <div className="mb-6">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Price Range</p>
-              <input type="range" min={10} max={100} value={maxPrice} onChange={e => { setMaxPrice(+e.target.value); setPage(1); }} className="w-full accent-primary" />
+              <input type="range" min={10} max={100} value={maxPrice} onChange={e => { setMaxPrice(+e.target.value); setPage(1); }} aria-label="Maximum price filter" className="w-full accent-primary" />
               <div className="flex justify-between text-xs text-muted-foreground mt-1">
                 <span>£10</span><span className="font-medium text-foreground">up to £{maxPrice}</span>
               </div>
@@ -127,22 +127,26 @@ export function ProductsPage() {
           )}
 
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2 mt-10">
+            <nav aria-label="Pagination" className="flex items-center justify-center gap-2 mt-10">
               <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}
+                aria-label="Previous page"
                 className="p-2 rounded-lg border border-border hover:bg-muted disabled:opacity-40 transition-colors">
                 <ChevronLeft size={16} />
               </button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
                 <button key={n} onClick={() => setPage(n)}
+                  aria-label={`Page ${n}`}
+                  aria-current={page === n ? "page" : undefined}
                   className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${page === n ? "bg-primary text-primary-foreground" : "border border-border hover:bg-muted"}`}>
                   {n}
                 </button>
               ))}
               <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages}
+                aria-label="Next page"
                 className="p-2 rounded-lg border border-border hover:bg-muted disabled:opacity-40 transition-colors">
                 <ChevronRight size={16} />
               </button>
-            </div>
+            </nav>
           )}
         </div>
       </div>

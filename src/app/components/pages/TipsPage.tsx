@@ -27,7 +27,7 @@ export function TipsPage() {
 
       <div className="relative max-w-md mx-auto mb-10">
         <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
-        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search articles…"
+        <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search articles..." aria-label="Search articles"
           className="w-full pl-11 pr-5 py-3.5 rounded-xl border border-border bg-card outline-none focus:border-primary/50 transition-colors" />
       </div>
 

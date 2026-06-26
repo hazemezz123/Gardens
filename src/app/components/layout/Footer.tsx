@@ -38,9 +38,15 @@ export function Footer() {
               across Europe, Asia, and New Zealand.
             </p>
             <div className="flex gap-3 mt-5">
-              {[Instagram, Twitter, Facebook, Youtube].map((Icon, i) => (
+              {[
+                { Icon: Instagram, label: "Instagram" },
+                { Icon: Twitter, label: "Twitter" },
+                { Icon: Facebook, label: "Facebook" },
+                { Icon: Youtube, label: "YouTube" },
+              ].map(({ Icon, label }) => (
                 <button
-                  key={i}
+                  key={label}
+                  aria-label={label}
                   className="p-2 rounded-lg bg-background/10 hover:bg-background/20 transition-colors"
                 >
                   <Icon size={15} />
@@ -49,9 +55,9 @@ export function Footer() {
             </div>
           </div>
           <div>
-            <h4 className="text-sm font-semibold mb-4 text-background/80 uppercase tracking-wider">
+            <h2 className="text-sm font-semibold mb-4 text-background/80 uppercase tracking-wider">
               Shop
-            </h4>
+            </h2>
             <ul className="space-y-2.5">
               {[
                 "Vegetables",
@@ -73,9 +79,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-sm font-semibold mb-4 text-background/80 uppercase tracking-wider">
+            <h2 className="text-sm font-semibold mb-4 text-background/80 uppercase tracking-wider">
               Company
-            </h4>
+            </h2>
             <ul className="space-y-2.5">
               {[
                 ["About Us", "/about"],
@@ -99,9 +105,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-sm font-semibold mb-4 text-background/80 uppercase tracking-wider">
+            <h2 className="text-sm font-semibold mb-4 text-background/80 uppercase tracking-wider">
               Get In Touch
-            </h4>
+            </h2>
             <ul className="space-y-3">
               <li className="flex gap-2.5 text-sm text-background/60">
                 <Mail size={15} className="mt-0.5 shrink-0" /> hello@gardens.co
